@@ -241,7 +241,7 @@ export function AISection() {
               models and scalable infrastructure, it empowers lenders to deliver
               efficient, customer-centric experiences at scale.
             </p>
-            <a href="#demo" className="btn-yubi mt-7">
+            <a href="/strikeverse" className="btn-yubi mt-7">
               Explore StrikeVerse
               <ArrowUpRight />
             </a>

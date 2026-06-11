@@ -97,7 +97,7 @@ export function ProductsSection() {
                   </div>
 
                   <a
-                    href="#demo"
+                    href={`/products/${product.slug}`}
                     className="btn-yubi btn-yubi-outline w-fit !bg-white/70"
                   >
                     Explore Now

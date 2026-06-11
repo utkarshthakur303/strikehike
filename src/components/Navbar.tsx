@@ -58,7 +58,7 @@ export function Navbar() {
         }}
       >
         <motion.a
-          href="#"
+          href="/"
           aria-label="StrikeHike home"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

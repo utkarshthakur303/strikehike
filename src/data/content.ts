@@ -25,6 +25,7 @@ export const products = [
   {
     number: "01",
     title: "Lending OS",
+    slug: "lending-os",
     subtitle: "Smart Lending Platform",
     description:
       "Streamline your lending process with AI-powered decision making, automated workflows, and personalized loan offerings.",
@@ -34,6 +35,7 @@ export const products = [
   {
     number: "02",
     title: "Risk Assessment OS",
+    slug: "risk-assessment-os",
     subtitle: "Advanced Credit Intelligence Platform",
     description:
       "Turn unstructured data into real-time risk insights: predictive scoring, adaptive algorithms, and precision underwriting.",
@@ -43,6 +45,7 @@ export const products = [
   {
     number: "03",
     title: "Collections OS",
+    slug: "collections-os",
     subtitle: "Intelligent Recovery System",
     description:
       "Optimize your collections strategy with behavioral analytics, personalized communication channels, and automated payment plans.",

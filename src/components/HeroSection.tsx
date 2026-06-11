@@ -86,7 +86,7 @@ export function HeroSection() {
 
         <motion.a
           variants={item}
-          href="#products"
+          href="/explore"
           className="btn-yubi btn-yubi-light mt-9"
         >
           Explore StrikeHike
