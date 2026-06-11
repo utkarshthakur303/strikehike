@@ -49,7 +49,30 @@ export function Footer() {
               </button>
             </form>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex items-start gap-3">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mt-0.5 shrink-0"
+                style={{ color: "var(--primary-color)" }}
+              >
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <p className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                304, Rupa Solitaire, Millennium Business Park,<br />
+                Mahape, Andheri East, Mumbai,<br />
+                Maharashtra 400093, India
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
               {socials.map((s) => (
                 <a
                   key={s.key}
@@ -97,7 +120,7 @@ export function Footer() {
           style={{ borderColor: "var(--border-light)" }}
         >
           <p className="text-[13px]" style={{ color: "var(--text-light)" }}>
-            Copyright © 2026 StrikeHike. All Rights Reserved.
+            Copyright © 2025 StrikeHike. All Rights Reserved.
           </p>
           <div
             className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px]"
