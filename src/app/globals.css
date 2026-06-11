@@ -1,26 +1,394 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand */
+  --primary-color: #f05d49;
+  --primary-hover: #d8492f;
+  --primary-purple: #6938ef;
+  --primary-dark: #091226;
+  --primary-light: #f9fafb;
+
+  /* Secondary tints / decorative pastels */
+  --secondary-pink: #ffeae4;
+  --secondary-yellow: #fff6e3;
+  --secondary-blue: #d7e2ff;
+  --pastel-peach: #ffe3d6;
+  --pastel-lavender: #ece4ff;
+  --pastel-beige: #f4ecdf;
+  --pastel-cream: #fdf6ea;
+
+  /* Text */
+  --text-primary: #091226;
+  --text-color: #091226;
+  --text-secondary: #576272;
+  --text-light: #666666;
+  --text-white: #ffffff;
+
+  /* Surfaces */
+  --bg-light: #f7f3ec;
+  --bg-page: #fcfaf7;
+  --bg-white: #ffffff;
+  --border-light: #ece7df;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 48px;
+  --radius-full: 9999px;
+
+  /* Soft shadow system — large blur, low opacity */
+  --shadow-soft: 0 18px 50px rgba(9, 18, 38, 0.06);
+  --shadow-soft-lg: 0 30px 80px rgba(9, 18, 38, 0.09);
+  --shadow-glow: 0 24px 70px rgba(240, 93, 73, 0.18);
+
+  /* Signature easing */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-page);
+  --color-foreground: var(--text-primary);
+  --color-primary: var(--primary-color);
+  --color-primary-purple: var(--primary-purple);
+  --color-dark: var(--primary-dark);
+  --color-muted: var(--text-secondary);
+  --color-muted-light: var(--text-light);
+  --color-border-light: var(--border-light);
+  --color-bg-light: var(--bg-light);
+  --color-pink: var(--secondary-pink);
+  --color-yellow: var(--secondary-yellow);
+  --color-blue: var(--secondary-blue);
+
+  --font-sans: var(--font-onest), "Onest", ui-sans-serif, system-ui, sans-serif;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+
+  --radius-lg: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 }
 
+html {
+  font-size: 16px;
+}
+
+/* Lenis is driving the scroll — disable native smooth behavior */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  line-height: 1.5;
+  background-color: var(--bg-page);
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Shared layout helpers ─────────────────────────── */
+/* horizontal padding only — vertical padding set by callers via Tailwind utilities */
+.container-yubi {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 640px) {
+  .container-yubi {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media (min-width: 1024px) {
+  .container-yubi {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary-purple) 0%, #9772fb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(96deg, #f05d49 0%, #f7945d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Buttons — expensive feel ──────────────────────── */
+.btn-yubi {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 30px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.45s var(--ease-smooth),
+    box-shadow 0.45s var(--ease-smooth), color 0.4s var(--ease-smooth),
+    border-color 0.4s var(--ease-smooth);
+}
+/* fill sweep */
+.btn-yubi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--primary-hover);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--ease-smooth);
+}
+.btn-yubi:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+.btn-yubi:hover::before {
+  transform: scaleX(1);
+}
+.btn-yubi:active {
+  transform: scale(0.98);
+}
+.btn-yubi svg {
+  transition: transform 0.4s var(--ease-smooth);
+}
+.btn-yubi:hover svg {
+  transform: translate(3px, -3px);
+}
+.btn-yubi-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+.btn-yubi-outline::before {
+  background: var(--text-primary);
+}
+.btn-yubi-outline:hover {
+  color: #fff;
+  border-color: var(--text-primary);
+  box-shadow: var(--shadow-soft);
+}
+/* white pill — used for the hero CTA (matches the reference) */
+.btn-yubi-light {
+  background: #fff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 10px 30px rgba(9, 18, 38, 0.08);
+}
+.btn-yubi-light::before {
+  background: var(--text-primary);
+}
+.btn-yubi-light:hover {
+  color: #fff;
+  border-color: var(--text-primary);
+}
+
+/* ── Section vertical rhythm (consistent across the page) ── */
+.section-pad {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+@media (min-width: 640px) {
+  .section-pad {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+/* ── Section eyebrow / small heading ───────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--primary-color);
+}
+
+/* ── Card hover lift ───────────────────────────────── */
+.card-soft {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.55s var(--ease-smooth),
+    box-shadow 0.55s var(--ease-smooth);
+  will-change: transform;
+}
+.card-soft:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft-lg);
+}
+
+/* ── Animated underline link ───────────────────────── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.45s var(--ease-smooth);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* slow alive drift for pastel blobs */
+@keyframes floatDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(28px, -34px) scale(1.06);
+  }
+  66% {
+    transform: translate(-22px, 22px) scale(0.96);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 36s linear infinite;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
